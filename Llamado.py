@@ -132,7 +132,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.inicio_button.clicked.connect(self.toggle_data_sending)
         self.muestreo_button.clicked.connect(self.open_sampling_dialog)
-        self.datos_button.clicked.connect(self.open_mode_dialog)  # Conectar el botón de modo
+        self.datos_button.clicked.connect(self.open_mode_dialog)
 
         self.timer = QTimer()
         self.timer.setInterval(1000)
@@ -302,7 +302,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                             # Guardar los datos de STATS en la base de datos
                             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                            # Asumimos que temperature y humidity se guardan como el valor medio (mean_temp, mean_hum) para consistencia
                             thread_cursor.execute("""
                                 INSERT INTO samples (timestamp, temperature, temp_max, temp_min, temp_mean, humidity, hum_max, hum_min, hum_mean)
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
